@@ -25,9 +25,8 @@ CameraAPI::sendCameraInstructions($fadeCameraInstruction, $player);
 # Clear Camera Instruction
 ```php
 // no argument is compulsory
-$fadeCameraInstruction = new FadeCameraInstruction();
-$fadeCameraInstruction->setTime(1, 5, 1);
-$fadeCameraInstruction->setColor(225, 225, 225);
+$clearCameraInstruction = new ClearCameraInstruction();
+$clearCameraInstruction->setClear(true);
 
-CameraAPI::sendCameraInstructions($fadeCameraInstruction, $player);
+CameraAPI::sendCameraInstructions($clearCameraInstruction, $player);
 ```
