@@ -2,7 +2,10 @@
 
 namespace CameraAPI\Instructions;
 
-class ClearCameraInstruction extends CameraInstruction
+use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
+use pocketmine\player\Player;
+
+final class ClearCameraInstruction extends CameraInstruction
 {
     private ?bool $clear = null;
 
@@ -11,8 +14,8 @@ class ClearCameraInstruction extends CameraInstruction
         $this->clear = $clear;
     }
 
-    public function getClear(): bool
+    public function send(Player $player): void
     {
-        return $this->clear;
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, $this->clear, null));
     }
 }

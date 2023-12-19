@@ -3,16 +3,20 @@
 namespace CameraAPI\Instructions;
 
 use pocketmine\math\Vector3;
+use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
+use pocketmine\network\mcpe\protocol\CameraPresetsPacket;
 use pocketmine\network\mcpe\protocol\types\camera\CameraPreset;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionEase;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionRotation;
+use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstruction;
+use pocketmine\player\Player;
 
-class SetCameraInstruction extends CameraInstruction
+final class SetCameraInstruction extends CameraInstruction
 {
     private ?CameraPreset $cameraPreset = null;
-    private ?CameraSetInstructionEase $cameraSetInstructionEase = null;
+    private ?CameraSetInstructionEase $ease = null;
     private ?Vector3 $cameraPosition = null;
-    private ?CameraSetInstructionRotation $cameraSetInstructionRotation = null;
+    private ?CameraSetInstructionRotation $rotation = null;
     private ?Vector3 $facingPosition = null;
 
     public function setPreset(CameraPreset $cameraPreset): void
@@ -22,7 +26,7 @@ class SetCameraInstruction extends CameraInstruction
 
     public function setEase(int $type, float $duration): void
     {
-        $this->cameraSetInstructionEase = new CameraSetInstructionEase($type, $duration);
+        $this->ease = new CameraSetInstructionEase($type, $duration);
     }
 
     public function setCameraPostion(Vector3 $cameraPosition): void
@@ -32,7 +36,7 @@ class SetCameraInstruction extends CameraInstruction
 
     public function setRotation(float $pitch, float $yaw): void
     {
-        $this->cameraSetInstructionRotation = new CameraSetInstructionRotation($pitch, $yaw);
+        $this->rotation = new CameraSetInstructionRotation($pitch, $yaw);
     }
 
     public function setFacingPosition(Vector3 $facingPosition): void
@@ -40,28 +44,9 @@ class SetCameraInstruction extends CameraInstruction
         $this->facingPosition = $facingPosition;
     }
 
-    public function getPreset(): CameraPreset
+    public function send(Player $player): void
     {
-        return $this->cameraPreset;
-    }
-
-    public function getEase(): ?CameraSetInstructionEase
-    {
-        return $this->cameraSetInstructionEase;
-    }
-
-    public function getCameraPostion(): ?Vector3
-    {
-        return $this->cameraPosition;
-    }
-
-    public function getRotation(): ?CameraSetInstructionRotation
-    {
-        return $this->cameraSetInstructionRotation;
-    }
-
-    public function getFacingPosition(): ?Vector3
-    {
-        return $this->facingPosition;
+        $player->getNetworkSession()->sendDataPacket(CameraPresetsPacket::create(array($this->cameraPreset)));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(0, $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, null), null, null));
     }
 }
