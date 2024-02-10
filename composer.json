@@ -1,0 +1,23 @@
+{
+  "name": "CameraAPI",
+  "description": "a Pocketmine-MP API to use CameraPacket",
+  "type": "library",
+  "require": {
+    "pocketmine/pocketmine-mp": "^5.0.0"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  },
+  "authors": [
+    {
+      "name": "KaxYum",
+      "email": "itskaxyum@gmail.com"
+    }
+  ],
+  "extra": {
+    "virion": {
+      "spec": "3.0",
+      "namespace-root": "CameraAPI"
+    }
+  }
+}
