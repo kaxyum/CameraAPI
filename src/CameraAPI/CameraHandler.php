@@ -6,7 +6,7 @@ use muqsit\simplepackethandler\SimplePacketHandler;
 use pocketmine\event\EventPriority;
 use pocketmine\network\mcpe\NetworkSession;
 use pocketmine\network\mcpe\protocol\CameraPresetsPacket;
-use pocketmine\network\mcpe\protocol\StartGamePacket;
+use pocketmine\network\mcpe\protocol\SetLocalPlayerAsInitializedPacket;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\SingletonTrait;
 
@@ -30,7 +30,7 @@ class CameraHandler
 
         self::getInstance()->plugin = $plugin;
         $interceptor = SimplePacketHandler::createInterceptor($plugin, EventPriority::HIGHEST, false);
-        $interceptor->interceptIncoming(function (StartGamePacket $pk, NetworkSession $target): bool
+        $interceptor->interceptIncoming(function (SetLocalPlayerAsInitializedPacket $pk, NetworkSession $target): bool
         {
             $target->sendDataPacket(CameraPresetsPacket::create(CameraPresets::getAll()));
             return true;
