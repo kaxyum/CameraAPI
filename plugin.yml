@@ -3,3 +3,5 @@ main: CameraAPI\CameraAPI
 version: 1.0.0
 api: [5.0.0]
 author: KaxYum
+depend:
+  - SimplePacketHandler

@@ -2,9 +2,9 @@
 
 namespace CameraAPI\Instructions;
 
+use CameraAPI\CameraPresets;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
-use pocketmine\network\mcpe\protocol\CameraPresetsPacket;
 use pocketmine\network\mcpe\protocol\types\camera\CameraPreset;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionEase;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionRotation;
@@ -46,7 +46,6 @@ final class SetCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraPresetsPacket::create(array($this->cameraPreset)));
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(0, $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, null), null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, null), null, null));
     }
 }
