@@ -4,5 +4,6 @@ branches:
 - main
 projects:
   CameraAPI:
-    path: ""
+    model: virion
+    type: library
 ...
