@@ -1,5 +1,17 @@
 # CameraAPI
 CameraAPI is an API that makes it easy to use the CameraPacket.
+
+# Usage
+Install [SimplePacketHandler](https://github.com/Muqsit/SimplePacketHandler/releases) on your server
+
+Register CameraHandler 
+```php
+if(!CameraHandler::isRegistered())
+{
+    CameraHandler::register($this);
+}
+```
+
 # Set Camera Instruction
 ```php
 // only the argument preset is compulsory
