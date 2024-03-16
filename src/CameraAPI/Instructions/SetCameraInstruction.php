@@ -29,7 +29,7 @@ final class SetCameraInstruction extends CameraInstruction
         $this->ease = new CameraSetInstructionEase($type, $duration);
     }
 
-    public function setCameraPostion(Vector3 $cameraPosition): void
+    public function setCameraPosition(Vector3 $cameraPosition): void
     {
         $this->cameraPosition = $cameraPosition;
     }
