@@ -18,7 +18,7 @@ if(!CameraHandler::isRegistered())
 $setCameraInstruction = new SetCameraInstruction();
 $setCameraInstruction->setPreset(CameraPresets::FREE()); //CameraPresets::FIRST_PERSON(), CameraPresets::THIRD_PERSON(), CameraPresets::THIRD_PERSON_FRONT()
 $setCameraInstruction->setEase(CameraSetInstructionEaseType::LINEAR, 1);
-$setCameraInstruction->setCameraPostion(new Vector3(100, 100, 100));
+$setCameraInstruction->setCameraPosition(new Vector3(100, 100, 100));
 $setCameraInstruction->setRotation(0, 0);
 $setCameraInstruction->setFacingPosition(new Vector3(0, 0, 0));
 $setCameraInstruction->send($player);
