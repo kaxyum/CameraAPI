@@ -3,6 +3,7 @@
 namespace CameraAPI\Instructions;
 
 use CameraAPI\CameraPresets;
+use pocketmine\math\Vector2;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
 use pocketmine\network\mcpe\protocol\types\camera\CameraPreset;
@@ -18,6 +19,7 @@ final class SetCameraInstruction extends CameraInstruction
     private ?Vector3 $cameraPosition = null;
     private ?CameraSetInstructionRotation $rotation = null;
     private ?Vector3 $facingPosition = null;
+    private ?Vector2 $viewOffset = null;
 
     public function setPreset(CameraPreset $cameraPreset): void
     {
@@ -44,8 +46,13 @@ final class SetCameraInstruction extends CameraInstruction
         $this->facingPosition = $facingPosition;
     }
 
+    public function setViewOffset(Vector2 $viewOffset): void
+    {
+        $this->viewOffset = $viewOffset;
+    }
+
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, null), null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, $this->viewOffset, null), null, null, null, null));
     }
 }
