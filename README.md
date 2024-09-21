@@ -54,6 +54,17 @@ $shakeCameraInstruction->setShakeAction(CameraShakePacket::ACTION_ADD); //Camera
 $shakeCameraInstruction->send($player);
 ```
 
+# Aim Assist Camera Instruction
+```php
+// all arguments are compulsory
+$aimAssistCameraInstruction = new AimAssistCameraInstruction();
+$aimAssistCameraInstruction->setViewAngle(new Vector2(0, 0));
+$aimAssistCameraInstruction->setDistance(0);
+$aimAssistCameraInstruction->setTargetMode(CameraAimAssistTargetMode::ANGLE); //CameraAimAssistTargetMode::DISTANCE
+$aimAssistCameraInstruction->setActionType(CameraAimAssistActionType::SET); //CameraAimAssistActionType::CLEAR
+$aimAssistCameraInstruction->send($player);
+```
+
 # Clear Camera Instruction
 ```php
 // no argument is compulsory

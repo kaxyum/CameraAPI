@@ -25,11 +25,11 @@ final class CameraPresets
 
     protected static function setup(): void
     {
-        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
-        self::register("first_person", new CameraPreset("minecraft:first_person", "",null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
+        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
+        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
+        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
+        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
+        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
     }
 
     protected static function register(string $name, CameraPreset $member): void
