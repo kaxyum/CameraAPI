@@ -17,6 +17,7 @@ use pocketmine\utils\RegistryTrait;
  * @method static CameraPreset THIRD_PERSON()
  * @method static CameraPreset THIRD_PERSON_FRONT()
  * @method static CameraPreset FOLLOW_ORBIT()
+ * @method static CameraPreset FIXED_BOOM()
  */
 
 final class CameraPresets
@@ -25,11 +26,13 @@ final class CameraPresets
 
     protected static function setup(): void
     {
-        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
-        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, false));
-        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, false));
+        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null));
+        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register("fixed_boom", new CameraPreset("minecraft:fixed_boom", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+
     }
 
     protected static function register(string $name, CameraPreset $member): void
@@ -39,6 +42,6 @@ final class CameraPresets
 
     public static function getAll(): array
     {
-        return [self::FREE(), self::FIRST_PERSON(), self::THIRD_PERSON(), self::THIRD_PERSON_FRONT(), self::FOLLOW_ORBIT()];
+        return [self::FREE(), self::FIRST_PERSON(), self::THIRD_PERSON(), self::THIRD_PERSON_FRONT(), self::FOLLOW_ORBIT(), self::FIXED_BOOM(),];
     }
 }

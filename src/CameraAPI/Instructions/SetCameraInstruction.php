@@ -21,6 +21,8 @@ final class SetCameraInstruction extends CameraInstruction
     private ?Vector3 $facingPosition = null;
     private ?Vector2 $viewOffset = null;
 
+    private ?Vector3 $entityOffset = null;
+
     public function setPreset(CameraPreset $cameraPreset): void
     {
         $this->cameraPreset = $cameraPreset;
@@ -51,8 +53,13 @@ final class SetCameraInstruction extends CameraInstruction
         $this->viewOffset = $viewOffset;
     }
 
+    public function setEntityOffset(Vector3 $entityOffset): void
+    {
+        $this->entityOffset = $entityOffset;
+    }
+
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, $this->viewOffset, null), null, null, null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, $this->viewOffset, $this->entityOffset, null), null, null, null, null));
     }
 }
