@@ -16,7 +16,7 @@ if(!CameraHandler::isRegistered())
 ```php
 // only the argument preset is compulsory
 $setCameraInstruction = new SetCameraInstruction();
-$setCameraInstruction->setPreset(CameraPresets::FREE()); //CameraPresets::FIRST_PERSON(), CameraPresets::THIRD_PERSON(), CameraPresets::THIRD_PERSON_FRONT(), CameraPresets::FOLLOW_ORBIT()
+$setCameraInstruction->setPreset(CameraPresets::FREE()); //CameraPresets::FIRST_PERSON(), CameraPresets::THIRD_PERSON(), CameraPresets::THIRD_PERSON_FRONT(), CameraPresets::FOLLOW_ORBIT(), CameraPresets:FIXED_BOOM()
 $setCameraInstruction->setEase(CameraSetInstructionEaseType::LINEAR, 1);
 $setCameraInstruction->setCameraPosition(new Vector3(100, 100, 100));
 $setCameraInstruction->setRotation(0, 0);
