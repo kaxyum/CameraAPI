@@ -22,6 +22,7 @@ $setCameraInstruction->setCameraPosition(new Vector3(100, 100, 100));
 $setCameraInstruction->setRotation(0, 0);
 $setCameraInstruction->setFacingPosition(new Vector3(0, 0, 0));
 $setCameraInstruction->setViewOffset(new Vector2(0, 0));
+$setCameraInstruction->setIgnoreStartingValuesComponent(true)
 $setCameraInstruction->send($player);
 ```
 # Fade Camera Instruction
