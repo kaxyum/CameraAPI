@@ -55,6 +55,17 @@ $shakeCameraInstruction->setShakeAction(CameraShakePacket::ACTION_ADD); //Camera
 $shakeCameraInstruction->send($player);
 ```
 
+# Fov Camera Instruction
+```php
+// all arguments are compulsory
+$fovCameraInstruction = new FovCameraInstruction();
+$fovCameraInstruction->setFieldOfView(0)
+$fovCameraInstruction->setEaseTime(0)
+$fovCameraInstruction->setEaseType(0)
+$fovCameraInstruction->setClear(true)
+$fovCameraInstruction->send($player);
+```
+
 # Clear Camera Instruction
 ```php
 // no argument is compulsory

@@ -25,6 +25,6 @@ final class FadeCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null, null));
     }
 }
