@@ -23,15 +23,13 @@ class CameraHandler
 
     public static function register(Plugin $plugin): void
     {
-        if(!is_null(($pl = self::getInstance()->plugin)))
-        {
+        if (!is_null(($pl = self::getInstance()->plugin))) {
             throw new \Error("Already registered with {$pl->getName()}");
         }
 
         self::getInstance()->plugin = $plugin;
         $interceptor = SimplePacketHandler::createInterceptor($plugin, EventPriority::HIGHEST, false);
-        $interceptor->interceptIncoming(function (SetLocalPlayerAsInitializedPacket $pk, NetworkSession $target): bool
-        {
+        $interceptor->interceptIncoming(function (SetLocalPlayerAsInitializedPacket $pk, NetworkSession $target): bool {
             $target->sendDataPacket(CameraPresetsPacket::create(CameraPresets::getAll()));
             return true;
         });

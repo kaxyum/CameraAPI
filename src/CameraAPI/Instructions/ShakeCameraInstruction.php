@@ -2,7 +2,6 @@
 
 namespace CameraAPI\Instructions;
 
-use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
 use pocketmine\network\mcpe\protocol\CameraShakePacket;
 use pocketmine\player\Player;
 

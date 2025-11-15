@@ -25,12 +25,12 @@ final class CameraPresets
 
     protected static function setup(): void
     {
-        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null));
-        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0,CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("fixed_boom", new CameraPreset("minecraft:fixed_boom", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register('free', new CameraPreset('minecraft:free', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null));
+        self::register('first_person', new CameraPreset('minecraft:first_person', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register('third_person', new CameraPreset('minecraft:third_person', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register('third_person_front', new CameraPreset('minecraft:third_person_front', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register('follow_orbit', new CameraPreset('minecraft:follow_orbit', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
+        self::register('fixed_boom', new CameraPreset('minecraft:fixed_boom', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
 
     }
 

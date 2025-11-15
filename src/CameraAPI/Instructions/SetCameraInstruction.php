@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CameraAPI\Instructions;
 
 use CameraAPI\CameraPresets;
@@ -7,9 +9,9 @@ use pocketmine\math\Vector2;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
 use pocketmine\network\mcpe\protocol\types\camera\CameraPreset;
+use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstruction;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionEase;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionRotation;
-use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstruction;
 use pocketmine\player\Player;
 
 final class SetCameraInstruction extends CameraInstruction
@@ -20,9 +22,7 @@ final class SetCameraInstruction extends CameraInstruction
     private ?CameraSetInstructionRotation $rotation = null;
     private ?Vector3 $facingPosition = null;
     private ?Vector2 $viewOffset = null;
-
     private ?Vector3 $entityOffset = null;
-
     private bool $ignoreStartingValuesComponent = true;
 
     public function setPreset(CameraPreset $cameraPreset): void
@@ -67,6 +67,32 @@ final class SetCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(new CameraSetInstruction(array_search($this->cameraPreset, CameraPresets::getAll(), true), $this->ease, $this->cameraPosition, $this->rotation, $this->facingPosition, $this->viewOffset, $this->entityOffset, null, $this->ignoreStartingValuesComponent), null, null, null, null, null));
+        $presetIndex = array_search($this->cameraPreset, CameraPresets::getAll(), true);
+
+        $cameraSetInstruction = new CameraSetInstruction(
+            $presetIndex,
+            $this->ease,
+            $this->cameraPosition,
+            $this->rotation,
+            $this->facingPosition,
+            $this->viewOffset,
+            $this->entityOffset,
+            null,
+            $this->ignoreStartingValuesComponent
+        );
+
+        $packet = CameraInstructionPacket::create(
+            $cameraSetInstruction,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        );
+
+        $player->getNetworkSession()->sendDataPacket($packet);
     }
 }

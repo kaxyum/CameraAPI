@@ -3,9 +3,9 @@
 namespace CameraAPI\Instructions;
 
 use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
+use pocketmine\network\mcpe\protocol\types\camera\CameraFadeInstruction;
 use pocketmine\network\mcpe\protocol\types\camera\CameraFadeInstructionColor;
 use pocketmine\network\mcpe\protocol\types\camera\CameraFadeInstructionTime;
-use pocketmine\network\mcpe\protocol\types\camera\CameraFadeInstruction;
 use pocketmine\player\Player;
 
 final class FadeCameraInstruction extends CameraInstruction
@@ -25,6 +25,6 @@ final class FadeCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null, null, null, null, null));
     }
 }
