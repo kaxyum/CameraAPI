@@ -24,6 +24,6 @@ final class TargetCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, null, new CameraTargetInstruction($this->targetCenterOffset, $this->actorUniqueId), null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, null, new CameraTargetInstruction($this->targetCenterOffset, $this->actorUniqueId), null, null, null, null, null));
     }
 }
