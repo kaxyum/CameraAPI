@@ -22,6 +22,6 @@ final class ClearCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, $this->clear, null, null, $this->removeTarget, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, $this->clear, null, null, $this->removeTarget, null, null, null, null));
     }
 }

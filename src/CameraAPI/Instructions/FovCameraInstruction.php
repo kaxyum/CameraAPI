@@ -38,6 +38,6 @@ final class FovCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, null, null, null, new CameraFovInstruction($this->fieldOfView, $this->easeTime, $this->easeType, $this->clear)));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, null, null, null, new CameraFovInstruction($this->fieldOfView, $this->easeTime, $this->easeType, $this->clear), null, null, null));
     }
 }

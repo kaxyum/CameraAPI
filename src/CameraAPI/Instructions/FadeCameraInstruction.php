@@ -15,6 +15,7 @@ final class FadeCameraInstruction extends CameraInstruction
 
     public function setTime(float $fadeInTime, float $stayInTime, float $fadeOutTime): void
     {
+        if ($fadeInTime instanceof Item)
         $this->time = new CameraFadeInstructionTime($fadeInTime, $stayInTime, $fadeOutTime);
     }
 
@@ -25,6 +26,6 @@ final class FadeCameraInstruction extends CameraInstruction
 
     public function send(Player $player): void
     {
-        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null, null));
+        $player->getNetworkSession()->sendDataPacket(CameraInstructionPacket::create(null, null, new CameraFadeInstruction($this->time, $this->color), null, null, null, null, null, null));
     }
 }
