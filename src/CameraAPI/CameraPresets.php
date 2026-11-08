@@ -17,21 +17,24 @@ use pocketmine\utils\RegistryTrait;
  * @method static CameraPreset THIRD_PERSON_FRONT()
  * @method static CameraPreset FOLLOW_ORBIT()
  * @method static CameraPreset FIXED_BOOM()
+ * @method static CameraPreset CONTROL_SCHEME_CAMERA()
  */
 
 final class CameraPresets
 {
     use RegistryTrait;
 
+    private static array $customMember = [];
+
     protected static function setup(): void
     {
-        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null));
-        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0,CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-        self::register("fixed_boom", new CameraPreset("minecraft:fixed_boom", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null));
-
+        self::register("free", new CameraPreset("minecraft:free", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null, false, null));
+        self::register("first_person", new CameraPreset("minecraft:first_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null, false, null));
+        self::register("third_person", new CameraPreset("minecraft:third_person", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null, false, null));
+        self::register("third_person_front", new CameraPreset("minecraft:third_person_front", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_PLAYER, null, null, null, false, null));
+        self::register("follow_orbit", new CameraPreset("minecraft:follow_orbit", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null, false, null));
+        self::register("fixed_boom", new CameraPreset("minecraft:fixed_boom", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null, false, null));
+        self::register("control_scheme_camera", new CameraPreset("minecraft:control_scheme_camera", "", null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0, CameraPreset::AUDIO_LISTENER_TYPE_CAMERA, null, null, null, false, null));
     }
 
     protected static function register(string $name, CameraPreset $member): void
@@ -39,8 +42,24 @@ final class CameraPresets
         self::_registryRegister($name, $member);
     }
 
+    public static function registerCustom(string $name, CameraPreset $member): void
+    {
+        self::$customMember[$name] = $member;
+    }
+
     public static function getAll(): array
     {
-        return [self::FREE(), self::FIRST_PERSON(), self::THIRD_PERSON(), self::THIRD_PERSON_FRONT(), self::FOLLOW_ORBIT(), self::FIXED_BOOM(),];
+        return array_merge(
+            [
+                self::FREE(),
+                self::FIRST_PERSON(),
+                self::THIRD_PERSON(),
+                self::THIRD_PERSON_FRONT(),
+                self::FOLLOW_ORBIT(),
+                self::FIXED_BOOM(),
+                self::CONTROL_SCHEME_CAMERA()
+            ],
+            array_values(self::$customMember)
+        );
     }
 }

@@ -5,8 +5,10 @@ namespace CameraAPI;
 use muqsit\simplepackethandler\SimplePacketHandler;
 use pocketmine\event\EventPriority;
 use pocketmine\network\mcpe\NetworkSession;
+use pocketmine\network\mcpe\protocol\CameraAimAssistPresetsPacket;
 use pocketmine\network\mcpe\protocol\CameraPresetsPacket;
 use pocketmine\network\mcpe\protocol\SetLocalPlayerAsInitializedPacket;
+use pocketmine\network\mcpe\protocol\types\camera\CameraAimAssistPresetsPacketOperation;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\SingletonTrait;
 
@@ -33,6 +35,7 @@ class CameraHandler
         $interceptor->interceptIncoming(function (SetLocalPlayerAsInitializedPacket $pk, NetworkSession $target): bool
         {
             $target->sendDataPacket(CameraPresetsPacket::create(CameraPresets::getAll()));
+            $target->sendDataPacket(CameraAimAssistPresetsPacket::create(CameraAimAssistCategories::getAll(), CameraAimAssistPresets::getAll(), CameraAimAssistPresetsPacketOperation::SET));
             return true;
         });
     }

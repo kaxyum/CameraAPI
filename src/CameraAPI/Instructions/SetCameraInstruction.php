@@ -8,6 +8,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\CameraInstructionPacket;
 use pocketmine\network\mcpe\protocol\types\camera\CameraPreset;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionEase;
+use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionEaseType;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstructionRotation;
 use pocketmine\network\mcpe\protocol\types\camera\CameraSetInstruction;
 use pocketmine\player\Player;
@@ -30,7 +31,7 @@ final class SetCameraInstruction extends CameraInstruction
         $this->cameraPreset = $cameraPreset;
     }
 
-    public function setEase(int $type, float $duration): void
+    public function setEase(CameraSetInstructionEaseType $type, float $duration): void
     {
         $this->ease = new CameraSetInstructionEase($type, $duration);
     }

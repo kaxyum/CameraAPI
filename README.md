@@ -6,8 +6,12 @@ Install [SimplePacketHandler](https://github.com/Muqsit/SimplePacketHandler/rele
 
 Register CameraHandler 
 ```php
-if(!CameraHandler::isRegistered())
-{
+if (!CameraHandler::isRegistered()) {
+    // Register custom camera components
+    CameraPresets::registerCustom(...);
+    CameraAimAssistCategories::registerCustom(...);
+    CameraAimAssistPresets::registerCustom(...);
+    
     CameraHandler::register($this);
 }
 ```
@@ -59,11 +63,32 @@ $shakeCameraInstruction->send($player);
 ```php
 // all arguments are compulsory
 $fovCameraInstruction = new FovCameraInstruction();
-$fovCameraInstruction->setFieldOfView(0)
-$fovCameraInstruction->setEaseTime(0)
-$fovCameraInstruction->setEaseType(0)
-$fovCameraInstruction->setClear(true)
+$fovCameraInstruction->setFieldOfView(0);
+$fovCameraInstruction->setEaseTime(0);
+$fovCameraInstruction->setEaseType(0);
+$fovCameraInstruction->setClear(true);
 $fovCameraInstruction->send($player);
+```
+
+# Aim Assist Camera Instruction
+```php
+// all arguments are compulsory
+$aimAssistCameraInstruction = new AimAssistCameraInstruction();
+$aimAssistCameraInstruction->setCameraAimAssistPreset(CameraAimAssistPresets::AIM_ASSIST_DEFAULT());
+$aimAssistCameraInstruction->setViewAngle(new Vector2(0, 0));
+$aimAssistCameraInstruction->setDistance(0);
+$aimAssistCameraInstruction->setTargetMode(CameraAimAssistTargetMode::ANGLE); //CameraAimAssistTargetMode::DISTANCE
+$aimAssistCameraInstruction->setActionType(CameraAimAssistActionType::SET); //CameraAimAssistActionType::CLEAR
+$aimAssistCameraInstruction->setShowDebugRender(false);
+$aimAssistCameraInstruction->send($player);
+```
+
+# Spline Camera Instruction
+```php
+// all arguments are compulsory
+$splineCameraInstruction = new SplineCameraInstruction();
+$splineCameraInstruction->setSplines([new CameraSplineDefinition(...)]);
+$splineCameraInstruction->send($player);
 ```
 
 # Clear Camera Instruction
