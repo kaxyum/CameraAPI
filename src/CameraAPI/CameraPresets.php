@@ -24,7 +24,7 @@ final class CameraPresets
 {
     use RegistryTrait;
 
-    private static array $customMember = [];
+    private static array $customMembers = [];
 
     protected static function setup(): void
     {
@@ -44,7 +44,7 @@ final class CameraPresets
 
     public static function registerCustom(string $name, CameraPreset $member): void
     {
-        self::$customMember[$name] = $member;
+        self::$customMembers[$name] = $member;
     }
 
     public static function getAll(): array
@@ -59,7 +59,7 @@ final class CameraPresets
                 self::FIXED_BOOM(),
                 self::CONTROL_SCHEME_CAMERA()
             ],
-            array_values(self::$customMember)
+            array_values(self::$customMembers)
         );
     }
 }

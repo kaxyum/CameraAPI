@@ -19,7 +19,7 @@ final class CameraAimAssistPresets
 {
     use RegistryTrait;
 
-    private static array $customMember = [];
+    private static array $customMembers = [];
 
     protected static function setup(): void
     {
@@ -33,7 +33,7 @@ final class CameraAimAssistPresets
 
     public static function registerCustom(string $name, CameraAimAssistPreset $member): void
     {
-        self::$customMember[$name] = $member;
+        self::$customMembers[$name] = $member;
     }
 
     public static function getAll(): array
@@ -42,7 +42,7 @@ final class CameraAimAssistPresets
             [
                 self::AIM_ASSIST_DEFAULT()
             ],
-            array_values(self::$customMember)
+            array_values(self::$customMembers)
         );
     }
 }
